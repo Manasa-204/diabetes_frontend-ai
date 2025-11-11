@@ -50,19 +50,36 @@ const Index = () => {
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     setResult(null);
-
-    // Simulate API call - Replace with actual API endpoint
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Mock prediction logic for demo
-    const mockPrediction: PredictionResult = {
-      prediction: Math.random() > 0.5 ? "diabetic" : "non-diabetic",
-      confidence: Math.random() * 0.3 + 0.7,
-    };
-
-    setResult(mockPrediction);
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          gender: data.gender,
+          age: Number(data.age),
+          hypertension: Number(data.hypertension),
+          heart_disease: Number(data.heart_disease),
+          smoking_history: data.smoking_history,
+          bmi: Number(data.bmi),
+          HbA1c_level: Number(data.HbA1c_level),
+          blood_glucose_level: Number(data.blood_glucose_level),
+        }),
+      });
+  
+      const result = await response.json();
+  
+      setResult({
+        prediction: result.prediction,
+        confidence: null, // If your backend returns probability, we can enable this later
+      });
+    } catch (error) {
+      console.error("Prediction request failed:", error);
+      setResult({ prediction: "Error connecting to server.", confidence: null });
+    }
+  
     setIsLoading(false);
-  };
+  };  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-accent/30 to-background">
