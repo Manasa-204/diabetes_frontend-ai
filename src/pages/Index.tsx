@@ -82,14 +82,38 @@ const Index = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Diabetes Prediction System
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-            Hybrid AI Model: SVM + XGBoost + Neural Network
-          </p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-4 pb-16">
+      <main className="max-w-2xl mx-auto px-4 pb-16 space-y-6">
+        {/* About Diabetes Section */}
+        <div className="medical-card medical-hover animate-scale-in p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-4">About Diabetes</h2>
+          <p className="text-muted-foreground mb-4">
+            Diabetes is a chronic condition where the body cannot use insulin properly, leading to high blood sugar levels. Over time, this can affect the heart, kidneys, eyes, nerves, and blood vessels.
+          </p>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-2">Types of Diabetes:</h3>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1">
+              <li><strong>Type 1</strong> – The body does not produce insulin.</li>
+              <li><strong>Type 2</strong> – The body produces insulin but does not use it effectively (most common).</li>
+              <li><strong>Gestational Diabetes</strong> – Occurs during pregnancy and may resolve after childbirth.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">Common Symptoms:</h3>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1">
+              <li>Increased thirst or hunger</li>
+              <li>Frequent urination</li>
+              <li>Fatigue</li>
+              <li>Blurred vision</li>
+              <li>Slow wound healing</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Prediction Form */}
         <div className="medical-card medical-hover animate-scale-in p-8">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Gender */}
@@ -298,6 +322,115 @@ const Index = () => {
               </Alert>
             </div>
           )}
+        </div>
+
+        {/* Do's and Don'ts Section */}
+        <div className="medical-card medical-hover p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Do's and Don'ts for Diabetes Self-Care</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-success mb-3">Do's</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2">
+                <li>Eat vegetables, whole grains, and lean protein.</li>
+                <li>Exercise or walk at least 30 minutes daily.</li>
+                <li>Drink adequate water.</li>
+                <li>Monitor blood sugar regularly.</li>
+                <li>Follow prescribed medication or insulin.</li>
+              </ul>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-destructive mb-3">Don'ts</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2">
+                <li>Avoid sugary drinks like soda and packaged juices.</li>
+                <li>Do not skip meals.</li>
+                <li>Avoid smoking and limit alcohol.</li>
+                <li>Reduce fried and processed foods.</li>
+                <li>Do not self-adjust medication.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Blood Sugar Reference Ranges */}
+        <div className="medical-card medical-hover p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Blood Sugar Reference Ranges</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 font-semibold text-foreground">Condition</th>
+                  <th className="text-left py-3 px-4 font-semibold text-foreground">Fasting (mg/dL)</th>
+                  <th className="text-left py-3 px-4 font-semibold text-foreground">After Meal (mg/dL)</th>
+                  <th className="text-left py-3 px-4 font-semibold text-foreground">HbA1c (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-4 text-muted-foreground">Normal</td>
+                  <td className="py-3 px-4 text-muted-foreground">&lt;100</td>
+                  <td className="py-3 px-4 text-muted-foreground">&lt;140</td>
+                  <td className="py-3 px-4 text-muted-foreground">&lt;5.7</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="py-3 px-4 text-muted-foreground">Pre-Diabetes</td>
+                  <td className="py-3 px-4 text-muted-foreground">100–125</td>
+                  <td className="py-3 px-4 text-muted-foreground">140–199</td>
+                  <td className="py-3 px-4 text-muted-foreground">5.7–6.4</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 text-muted-foreground">Diabetes</td>
+                  <td className="py-3 px-4 text-muted-foreground">≥126</td>
+                  <td className="py-3 px-4 text-muted-foreground">≥200</td>
+                  <td className="py-3 px-4 text-muted-foreground">≥6.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Exercise Suggestions */}
+        <div className="medical-card medical-hover p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Exercise Suggestions</h2>
+          <ul className="list-disc list-inside text-muted-foreground space-y-2">
+            <li>30 minutes brisk walking</li>
+            <li>Light yoga or stretching</li>
+            <li>Strength or resistance training 3 times per week</li>
+          </ul>
+        </div>
+
+        {/* Emergency Tips */}
+        <div className="medical-card medical-hover p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Emergency Tips (Hypo & Hyper)</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-3">Hypoglycemia (Low Blood Sugar):</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2">
+                <li>Eat or drink fast sugar: glucose tablet, candy, or juice.</li>
+                <li>Recheck sugar after 15 minutes.</li>
+                <li>Seek medical help if faint or confused.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-3">Hyperglycemia (High Blood Sugar):</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2">
+                <li>Drink water to stay hydrated.</li>
+                <li>Take medication/insulin as prescribed.</li>
+                <li>Avoid high-carb or sugary foods.</li>
+                <li>Seek medical help if breathing becomes difficult or vomiting occurs.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Need Help Section */}
+        <div className="medical-card medical-hover p-8 text-center">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Need Help?</h2>
+          <p className="text-muted-foreground mb-6">
+            If you have questions or need guidance, consult a doctor or a certified dietician.
+          </p>
+          <Button variant="medical" size="lg">
+            Find Support
+          </Button>
         </div>
       </main>
 
