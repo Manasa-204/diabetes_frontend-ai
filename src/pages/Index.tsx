@@ -58,20 +58,22 @@ const Index = () => {
         body: JSON.stringify({
           gender: data.gender,
           age: Number(data.age),
-          hypertension: Number(data.hypertension),
-          heart_disease: Number(data.heart_disease),
-          smoking_history: data.smoking_history,
+          hypertension: data.hypertension === "yes" ? 1 : 0,
+          heart_disease: data.heartDisease === "yes" ? 1 : 0,
+          smoking_history: data.smokingHistory,
           bmi: Number(data.bmi),
-          HbA1c_level: Number(data.HbA1c_level),
-          blood_glucose_level: Number(data.blood_glucose_level),
+          HbA1c_level: Number(data.hba1c),
+          blood_glucose_level: Number(data.bloodGlucose)
         }),
       });
   
-      const result = await response.json();
+      const resultData = await response.json();
   
+      // ✅ Adjust to match backend output key ("final_result")
       setResult({
-        prediction: result.prediction,
-        confidence: null, // If your backend returns probability, we can enable this later
+        prediction:
+          resultData.final_result === "Diabetic" ? "diabetic" : "non-diabetic",
+        confidence: null, // optional for future
       });
     } catch (error) {
       console.error("Prediction request failed:", error);
@@ -79,7 +81,8 @@ const Index = () => {
     }
   
     setIsLoading(false);
-  };  
+  };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-accent/30 to-background">
